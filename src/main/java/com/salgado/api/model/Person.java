@@ -1,24 +1,29 @@
 package com.salgado.api.model;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 @Entity
-@Table(name="category")
-public class Category {
+@Table(name="person")
+public class Person {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@NotNull
-	@Size(min = 3, max = 20)
 	private String name;
+	
+	@NotNull
+	private boolean active;
+	
+	@Embedded
+	private Address address;
 
 	public Long getId() {
 		return id;
@@ -34,6 +39,22 @@ public class Category {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address adress) {
+		this.address = adress;
 	}
 
 	@Override
@@ -52,7 +73,7 @@ public class Category {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Category other = (Category) obj;
+		Person other = (Person) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -60,5 +81,6 @@ public class Category {
 			return false;
 		return true;
 	}
+	
 	
 }

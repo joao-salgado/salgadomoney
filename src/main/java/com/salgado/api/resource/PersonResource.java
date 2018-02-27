@@ -17,35 +17,36 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.salgado.api.event.ResourceCreatedEvent;
-import com.salgado.api.model.Category;
-import com.salgado.api.repository.CategoryRepository;
+import com.salgado.api.model.Person;
+import com.salgado.api.repository.PersonRepository;
 
 @RestController
-@RequestMapping("/categories")
-public class CategoryResource {
+@RequestMapping("/people")
+public class PersonResource {
 
 	@Autowired
-	private CategoryRepository categoryRepository;
+	private PersonRepository personRepository;
 	
 	@Autowired
 	private ApplicationEventPublisher publisher;
 	
 	@GetMapping
-	public List<Category> toList() {
-		return categoryRepository.findAll();
+	public List<Person> toList() {
+		return personRepository.findAll();
 	}
 	
 	@PostMapping
-	public ResponseEntity<Category> toCreate(@Valid @RequestBody Category category, HttpServletResponse response) {
-		Category savedCategory = categoryRepository.save(category);
-		publisher.publishEvent(new ResourceCreatedEvent(this, response, savedCategory.getId()));
-		return ResponseEntity.status(HttpStatus.CREATED).body(savedCategory);
+	public ResponseEntity<Person> toCreate(@Valid @RequestBody Person person, HttpServletResponse response) {
+		Person savedPerson = personRepository.save(person);
+		publisher.publishEvent(new ResourceCreatedEvent(this, response, savedPerson.getId()));
+		return ResponseEntity.status(HttpStatus.CREATED).body(savedPerson);
 	}
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<?> findById(@PathVariable Long id) {
-		Category category = categoryRepository.findOne(id);
-		return category != null ? ResponseEntity.ok(category) : ResponseEntity.notFound().build();
+		Person person = personRepository.findOne(id);
+		return person != null ? ResponseEntity.ok(person) : ResponseEntity.notFound().build();
+		
 	}
 	
 }
