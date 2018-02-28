@@ -6,6 +6,4 @@ import com.salgado.api.model.Category;
 
 public interface CategoryRepository extends JpaRepository<Category, Long> {
 
-	
-	
 }

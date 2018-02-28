@@ -6,7 +6,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="person")
@@ -16,11 +21,11 @@ public class Person {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotNull
+	@NotEmpty
 	private String name;
 	
 	@NotNull
-	private boolean active;
+	private Boolean active;
 	
 	@Embedded
 	private Address address;
@@ -41,11 +46,17 @@ public class Person {
 		this.name = name;
 	}
 
+	@JsonIgnore
+	@Transient
 	public boolean isActive() {
 		return active;
 	}
+	
+	public Boolean getActive() {
+		return active;
+	}
 
-	public void setActive(boolean active) {
+	public void setActive(Boolean active) {
 		this.active = active;
 	}
 
