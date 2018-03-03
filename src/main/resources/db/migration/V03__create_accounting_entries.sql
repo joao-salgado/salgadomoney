@@ -18,7 +18,6 @@ INSERT INTO entry (description, due_date, date_payment, value, observation, type
 INSERT INTO entry (description, due_date, date_payment, value, observation, type, id_category, id_person) values ('Top Club', '2017-06-10', null, 120, null, 'RECEITA', 3, 3);
 INSERT INTO entry (description, due_date, date_payment, value, observation, type, id_category, id_person) values ('CEMIG', '2017-02-10', '2017-02-10', 110.44, 'Geração', 'RECEITA', 3, 4);
 INSERT INTO entry (description, due_date, date_payment, value, observation, type, id_category, id_person) values ('DMAE', '2017-06-10', null, 200.30, null, 'DESPESA', 3, 5);
-INSERT INTO entry (description, due_date, date_payment, value, observation, type, id_category, id_person) values ('Extra', '2017-03-10', '2017-03-10', 1010.32, null, 'RECEITA', 4, 6);
 INSERT INTO entry (description, due_date, date_payment, value, observation, type, id_category, id_person) values ('Bahamas', '2017-06-10', null, 500, null, 'RECEITA', 1, 7);
 INSERT INTO entry (description, due_date, date_payment, value, observation, type, id_category, id_person) values ('Top Club', '2017-03-10', '2017-03-10', 400.32, null, 'DESPESA', 4, 8);
 INSERT INTO entry (description, due_date, date_payment, value, observation, type, id_category, id_person) values ('Despachante', '2017-06-10', null, 123.64, 'Multas', 'DESPESA', 3, 9);
