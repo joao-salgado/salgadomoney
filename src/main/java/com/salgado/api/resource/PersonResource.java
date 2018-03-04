@@ -1,12 +1,12 @@
 package com.salgado.api.resource;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.salgado.api.event.ResourceCreatedEvent;
 import com.salgado.api.model.Person;
 import com.salgado.api.repository.PersonRepository;
+import com.salgado.api.repository.filter.PersonFilter;
 import com.salgado.api.service.PersonService;
 
 @RestController
@@ -40,8 +41,8 @@ public class PersonResource {
 	
 	@GetMapping
 	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_PESSOA') and #oauth2.hasScope('read')")
-	public List<Person> toList() {
-		return personRepository.findAll();
+	public Page<Person> search(PersonFilter personFilter, Pageable pageable) {
+		return personRepository.filter(personFilter, pageable);
 	}
 	
 	@PostMapping
